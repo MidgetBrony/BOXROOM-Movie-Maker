@@ -1,0 +1,73 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="BoxroomMovieMaker.AboutWindow"
+        Title="About BOXROOM Movie Maker"
+        Icon="/Assets/MovieMaker.ico"
+        Width="700" Height="650" MinWidth="580" MinHeight="520"
+        Background="#10131A" WindowStartupLocation="CenterOwner">
+  <Window.Resources>
+    <SolidColorBrush x:Key="PanelBrush" Color="#191E29" />
+    <SolidColorBrush x:Key="SoftBrush" Color="#242B39" />
+    <SolidColorBrush x:Key="AccentBrush" Color="#70D6B2" />
+    <SolidColorBrush x:Key="MutedBrush" Color="#A8B1C2" />
+  </Window.Resources>
+
+  <Grid RowDefinitions="Auto,*,Auto">
+    <Border Background="#151A24" Padding="26,20">
+      <StackPanel>
+        <TextBlock Text="BOXROOM MOVIE MAKER" FontSize="25" FontWeight="Bold"
+                   Foreground="{StaticResource AccentBrush}" />
+        <TextBlock Text="Version 1.1.3" Foreground="{StaticResource MutedBrush}" />
+      </StackPanel>
+    </Border>
+
+    <ScrollViewer Grid.Row="1">
+      <StackPanel Margin="24" Spacing="14">
+        <Border Background="{StaticResource PanelBrush}" CornerRadius="10" Padding="18">
+          <StackPanel Spacing="8">
+            <TextBlock Text="ABOUT" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" />
+            <TextBlock TextWrapping="Wrap"
+                       Text="A BOXROOM-themed utility that converts dropped movies to H.264 video, YUV420P pixel format, AAC audio and fast-start MP4 files for Unity playback." />
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"
+                       Text="Original videos are never modified. BOXROOM Movie Maker runs FFmpeg as a separate command-line program." />
+          </StackPanel>
+        </Border>
+
+        <Border Background="{StaticResource PanelBrush}" CornerRadius="10" Padding="18">
+          <StackPanel Spacing="8">
+            <TextBlock Text="BUNDLED FFMPEG" FontWeight="Bold" Foreground="{StaticResource AccentBrush}" />
+            <TextBlock FontWeight="SemiBold" Text="FFmpeg n9.0.2-3-ga5923073bf-20260923" />
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"
+                       Text="Static GPL build supplied by the BtbN FFmpeg-Builds project. It was built with --enable-gpl, --enable-version3 and libx264." />
+            <Border Background="#2B2440" CornerRadius="8" Padding="12" Margin="0,4,0,0">
+              <TextBlock TextWrapping="Wrap" Foreground="#E2B8FF"
+                         Text="FFmpeg is free software licensed under GNU GPL version 3 or later for this build. It is not owned by BOXROOM Movie Maker or BOXROOM." />
+            </Border>
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"
+                       Text="Copyright © 2000–2026 the FFmpeg developers. Full licence text and source/build links are included with this application." />
+          </StackPanel>
+        </Border>
+
+        <Border Background="{StaticResource SoftBrush}" CornerRadius="10" Padding="18">
+          <StackPanel Spacing="8">
+            <TextBlock Text="SOURCE AND LICENCE" FontWeight="Bold" />
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"
+                       Text="FFmpeg source commit: a5923073bfd8f25b7300d93af3f8e690174ebd30" />
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}"
+                       Text="BtbN build scripts: ccbffa4f85d0e8de5c135c69ebb10e4c14911fa9" />
+            <WrapPanel Margin="0,6,0,0">
+              <Button Content="Open GPL licence" Margin="0,0,8,8" Click="OpenLicence_OnClick" />
+              <Button Content="FFmpeg source" Margin="0,0,8,8" Click="OpenFfmpegSource_OnClick" />
+              <Button Content="Build source" Margin="0,0,8,8" Click="OpenBuildSource_OnClick" />
+              <Button Content="Third-party notice" Margin="0,0,0,8" Click="OpenNotice_OnClick" />
+            </WrapPanel>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+
+    <Border Grid.Row="2" Background="#151A24" Padding="20,13">
+      <Button Content="Close" HorizontalAlignment="Right" Click="Close_OnClick" />
+    </Border>
+  </Grid>
+</Window>

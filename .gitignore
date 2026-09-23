@@ -1,0 +1,7 @@
+bin/
+obj/
+publish/
+publish-*/
+*.user
+ThirdParty/FFmpeg/win-x64/ffmpeg.exe
+ThirdParty/FFmpeg/linux-x64/ffmpeg
