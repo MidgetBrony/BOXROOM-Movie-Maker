@@ -1,49 +1,90 @@
-# BOXROOM Movie Maker 1.1.3
+# BOXROOM Movie Maker
 
-A small Avalonia desktop tool for preparing videos for BOXROOM and Unity's video player on Windows or Linux.
+Got a video that will not play properly in BOXROOM? BOXROOM Movie Maker prepares it for the game with a simple drag, drop, and click.
 
-## What it does
+It works with individual videos or entire folders on Windows and Linux. FFmpeg is already included in the downloads, so there is nothing else to install.
 
-- Accepts individual video files or an entire dropped/selected folder.
-- Searches selected folders recursively for supported video files.
-- Keeps every source file untouched.
-- Saves each result beside the source as `name_BOXROOM.mp4`.
-- Never overwrites an existing result; it adds `_2`, `_3`, and so on.
-- Shows each movie's status, supports cancellation, and keeps a useful conversion log.
+## Download
 
-The conversion uses the developer-provided settings:
+Get the latest version from the [GitHub Releases page](https://github.com/MidgetBrony/BOXROOM-Movie-Maker/releases/latest).
+
+- Choose **Windows x64 AIO** for a regular 64-bit Windows PC.
+- Choose **Linux x64 AIO** for a 64-bit Linux PC.
+- The **Source** download is only for developers who want to inspect or build the program.
+
+Extract the complete download before opening it. Keep the application and FFmpeg together in the extracted folder.
+
+## How to use it
+
+1. Open **BOXROOM Movie Maker**.
+2. Drop one or more videos into the window, or drop a folder to find every supported video inside it.
+3. Select **Make BOXROOM ready**.
+4. Wait for each movie to show **Ready for BOXROOM**.
+
+The converted movie is saved beside the original with `_BOXROOM` added to its name:
 
 ```text
-ffmpeg -i "input.mp4" -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart "output.mp4"
+My Movie.mkv
+My Movie_BOXROOM.mp4
 ```
 
-## FFmpeg
+Your original videos are never changed or deleted. If a converted filename already exists, the program safely adds `_2`, `_3`, and so on.
 
-FFmpeg is included in the packaged Windows and Linux builds. The app finds it in any of these places:
+## Supported videos
 
-1. The bundled `ffmpeg.exe` (Windows) or `ffmpeg` (Linux) beside the app.
-2. A normal system `PATH` installation.
-3. A file selected with **Choose FFmpeg**.
+BOXROOM Movie Maker accepts:
 
-## Build
+- MP4, MKV, MOV and AVI
+- WebM and M4V
+- MPG and MPEG
+- WMV and FLV
+- TS, MTS and M2TS
+- OGV
 
-Install the .NET 10 SDK, then run:
+Folders are searched automatically, including their subfolders.
+
+## Windows
+
+Extract the ZIP and open **BOXROOM Movie Maker.exe**.
+
+The Windows download has a tidy AIO layout containing the application, `ffmpeg.exe`, the README, and a `Licences` folder. The Avalonia and .NET components are contained inside the application rather than appearing as hundreds of loose files.
+
+## Linux
+
+Extract the archive and run:
 
 ```shell
-dotnet restore
-dotnet build -c Release --no-restore
+./BoxroomMovieMaker
 ```
 
-Create clean single-file/AIO packages with:
+Executable permissions are already stored in the Linux archive. If your archive program removes them, restore them with:
 
 ```shell
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:DebugType=None -p:DebugSymbols=false
-dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:DebugType=None -p:DebugSymbols=false
+chmod +x BoxroomMovieMaker ffmpeg
 ```
 
-Platform publishing automatically places the matching FFmpeg binary and its GPL licence beside the app. The repository's `ThirdParty/FFmpeg` folder must be populated with the pinned binaries before publishing.
+## If something goes wrong
 
-From a source-only checkout, fetch the exact verified build first:
+- Keep `ffmpeg.exe` or `ffmpeg` beside BOXROOM Movie Maker.
+- Make sure you extracted the complete download instead of opening the application from inside the archive.
+- Check that you can write files to the folder containing the original video.
+- Expand **Conversion log** inside the program to see the FFmpeg error for a failed movie.
+- Use **Choose FFmpeg** if you deliberately moved FFmpeg somewhere else.
+
+## Privacy
+
+All conversion happens locally on your computer. Videos are not uploaded anywhere by BOXROOM Movie Maker.
+
+## FFmpeg and licences
+
+BOXROOM Movie Maker runs FFmpeg as a separate command-line program. The included FFmpeg build uses GPL-covered components such as `libx264`.
+
+Open **About & licences** inside the application for its exact FFmpeg version, copyright, licence, source revision, and build information. The complete GPLv3 text and third-party notice are also included in the packaged `Licences` folder.
+
+<details>
+<summary><strong>Building from source</strong></summary>
+
+Install the .NET 10 SDK. From a source-only checkout, fetch the verified FFmpeg build first:
 
 ```powershell
 .\scripts\fetch-ffmpeg-windows.ps1
@@ -55,17 +96,20 @@ or on Linux:
 ./scripts/fetch-ffmpeg-linux.sh
 ```
 
-## About and FFmpeg licensing
+Restore and build the application:
 
-The packaged application includes FFmpeg `n9.0.2-3-ga5923073bf-20260923`, an unmodified BtbN static build configured with `--enable-gpl`, `--enable-version3`, and `--enable-libx264`.
+```shell
+dotnet restore
+dotnet build -c Release --no-restore
+```
 
-The Windows AIO package contains only the single-file application, `ffmpeg.exe`, this README, and the `Licences` folder. Avalonia, .NET, and their native libraries are bundled inside the application executable.
+Create the clean single-file packages:
 
-Open **About & licences** inside the application for the exact version, copyright, licence, source revision, and build-script revision. The full GPLv3 text is included in each binary package. See `THIRD-PARTY-NOTICES.md` for source links and checksums.
+```shell
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:DebugType=None -p:DebugSymbols=false
+dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -p:DebugType=None -p:DebugSymbols=false
+```
 
-## Notes
+The exact third-party revisions and checksums are documented in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 
-- Output video is H.264 (`libx264`) with `yuv420p` pixel format.
-- Output audio is AAC.
-- `+faststart` moves MP4 metadata to the beginning for more compatible playback.
-- The app does not modify or delete the original video.
+</details>
