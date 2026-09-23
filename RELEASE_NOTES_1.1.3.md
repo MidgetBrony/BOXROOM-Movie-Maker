@@ -1,18 +1,30 @@
 # BOXROOM Movie Maker 1.1.3
 
-BOXROOM Movie Maker converts individual videos or recursively scanned folders into Unity-compatible MP4 files using H.264 video, YUV420P pixel format, AAC audio, and fast-start metadata.
+Got a video that will not play properly in BOXROOM? Drop it into BOXROOM Movie Maker and the program will create a BOXROOM-ready MP4 for you.
 
-## Changes
+You can add individual videos or drop an entire folder. Folders are searched automatically, so you can prepare a whole movie collection in one go.
 
-- Increased the default window size from 1080×760 to 1280×900.
-- Increased the minimum window size to 900×700.
-- Keeps the clean AIO layout introduced in 1.1.1.
-- Includes the supplied BOXROOM Movie Maker application icon.
+## How to use it
 
-## Downloads
+1. Download the Windows or Linux version below and extract it.
+2. Open **BOXROOM Movie Maker**.
+3. Drop videos or a folder into the window.
+4. Select **Make BOXROOM ready**.
 
-- **Windows x64 AIO:** single-file application plus the bundled FFmpeg executable and licence material.
-- **Linux x64 AIO:** single-file application plus the bundled FFmpeg executable and licence material.
-- **Source:** full BOXROOM Movie Maker source and verified FFmpeg retrieval scripts.
+Converted videos are saved beside the originals with `_BOXROOM` added to the filename. Your original videos are never changed or deleted.
 
-The packaged FFmpeg build is `n9.0.2-3-ga5923073bf-20260923`, configured with GPLv3-covered `libx264`. The full GPLv3 text, source revision, build-script revision, and upstream checksums are included.
+FFmpeg is already included, so there is nothing else to install. Keep the application and FFmpeg together in the extracted folder.
+
+## Which download do I need?
+
+- **Windows x64 AIO** — for regular 64-bit Windows PCs.
+- **Linux x64 AIO** — for 64-bit Linux PCs.
+- **Source** — only needed by developers who want to inspect or build the program themselves.
+
+## What changed in 1.1.3?
+
+- The window now opens larger so every control fits comfortably.
+- Added the official BOXROOM Movie Maker program icon.
+- Retains the tidy AIO folder with no wall of loose library files.
+
+Licence information for the included FFmpeg build is available from **About & licences** inside the program and in the packaged `Licences` folder.
